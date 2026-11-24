@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Flow Plomería | Servicios Residenciales, Comerciales y Pago en Línea</title>
+    
+    <!-- Bootstrap 5.3 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Font Awesome 6.5 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Google Fonts: Montserrat (Títulos) & Open Sans (Cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. PALETA DE COLORES Y VARIABLES (TEORÍA DEL COLOR)
+           - Azul Profundo (#0B3C5D): Transmite confianza, profesionalismo, estabilidad y agua.
+           - Azul Cian (#1D70B8): Representa limpieza, frescura, fluidez y tecnología.
+           - Ámbar / Naranja (#F39C12): Color complementario cálido para urgencias, energía y llamados a la acción (CTA).
+           - Fondos Claros (#F8FAFC) y Texto Oscuro (#1E293B): Máximo contraste y legibilidad.
+           ========================================================================== */
+        :root {
+            --color-primary-dark: #0B3C5D;
+            --color-primary-cyan: #1D70B8;
+            --color-accent-amber: #F39C12;
+            --color-accent-amber-hover: #D68910;
+            --color-bg-light: #F8FAFC;
+            --color-surface: #FFFFFF;
+            --color-text-main: #1E293B;
+            --color-text-muted: #64748B;
+            --color-border: #E2E8F0;
+            --shadow-sm: 0 4px 6px -1px rgba(11, 60, 93, 0.06), 0 2px 4px -2px rgba(11, 60, 93, 0.04);
+            --shadow-md: 0 10px 25px -5px rgba(11, 60, 93, 0.1), 0 8px 10px -6px rgba(11, 60, 93, 0.05);
+            --shadow-lg: 0 20px 35px -10px rgba(11, 60, 93, 0.18);
+            --radius-card: 16px;
+            --radius-btn: 10px;
+        }
+
+        /* ==========================================================================
+           2. TIPOGRAFÍA Y COMPOSICIÓN GENERAL
+           ========================================================================== */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--color-bg-light);
+            color: var(--color-text-main);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .section-padding {
+            padding: 5.5rem 0;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(29, 112, 184, 0.1);
+            color: var(--color-primary-cyan);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        /* ==========================================================================
+           3. BOTONES Y COMPONENTES INTERACTIVOS
+           ========================================================================== */
+        .btn-amber {
+            background-color: var(--color-accent-amber);
+            border-color: var(--color-accent-amber);
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            border-radius: var(--radius-btn);
+            padding: 0.75rem 1.6rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(243, 156, 18, 0.35);
+        }
+
+        .btn-amber:hover, .btn-amber:focus {
+            background-color: var(--color-accent-amber-hover);
+            border-color: var(--color-accent-amber-hover);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.45);
+        }
+
+        .btn-primary-deep {
+            background-color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            border-radius: var(--radius-btn);
+            padding: 0.75rem 1.6rem;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary-deep:hover {
+            background-color: var(--color-primary-cyan);
+            border-color: var(--color-primary-cyan);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           4. BARRA DE NAVEGACIÓN (NAVBAR)
+           ========================================================================== */
+        .navbar-custom {
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0.85rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--color-primary-dark) !important;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .brand-icon-box {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary-cyan));
+            color: #FFFFFF;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-link {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--color-text-main) !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--color-primary-cyan) !important;
+            background-color: rgba(29, 112, 184, 0.06);
+        }
+
+        /* ==========================================================================
+           5. SECCIÓN HERO
+           ========================================================================== */
+        .hero-section {
+            background: linear-gradient(135deg, #072A42 0%, var(--color-primary-dark) 55%, var(--color-primary-cyan) 100%);
+            color: #FFFFFF;
+            padding: 6.5rem 0 5.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(29, 112, 184, 0.35) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-title {
+            color: #FFFFFF;
+            font-size: clamp(2.1rem, 4vw, 3.25rem);
+            font-weight: 800;
+            line-height: 1.18;
+            margin-bottom: 1.35rem;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 1.12rem;
+            max-width: 580px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: var(--radius-card);
+            padding: 1.25rem;
+        }
+
+        .hero-visual-panel {
+            background: var(--color-surface);
+            color: var(--color-text-main);
+            border-radius: 20px;
+            padding: 1.5rem 1.75rem 1.75rem;
+            box-shadow: var(--shadow-lg);
+            border-top: 5px solid var(--color-accent-amber);
+        }
+
+        .hero-panel-banner {
+            width: 100%;
+            height: 175px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        /* ==========================================================================
+           6. TARJETAS DE SERVICIOS CON IMÁGENES
+           ========================================================================== */
+        .service-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-card);
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary-cyan);
+        }
+
+        .service-img-wrapper {
+            width: 100%;
+            height: 175px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+            background-color: #E2E8F0;
+        }
+
+        .service-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .service-card:hover .service-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .price-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            font-size: 1.15rem;
+        }
+
+        /* ==========================================================================
+           7. PLANES Y TARIFAS (RESIDENCIAL VS COMERCIAL)
+           ========================================================================== */
+        .plan-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-card);
+            padding: 2.25rem 2rem;
+            height: 100%;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            transition: all 0.25s ease;
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--color-primary-cyan);
+            box-shadow: var(--shadow-md);
+        }
+
+        .plan-ribbon {
+            position: absolute;
+            top: -14px;
+            right: 24px;
+            background-color: var(--color-accent-amber);
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================================================
+           8. APLICACIÓN INTERACTIVA DE PAGO EN LÍNEA Y COTIZADOR
+           ========================================================================== */
+        .app-payment-wrapper {
+            background-color: var(--color-surface);
+            border-radius: 22px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .app-header-bar {
+            background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary-cyan));
+            color: #FFFFFF;
+            padding: 1.5rem 2rem;
+        }
+
+        /* Selector de Tipo de Propiedad */
+        .property-type-btn {
+            border: 2px solid var(--color-border);
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .property-type-btn.active {
+            border-color: var(--color-primary-cyan);
+            background-color: rgba(29, 112, 184, 0.06);
+        }
+
+        /* Ítems seleccionables de plomería */
+        .service-option-item {
+            border: 1.5px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1rem 1.15rem;
+            transition: all 0.2s ease;
+            background-color: #FFFFFF;
+        }
+
+        .service-option-item.selected {
+            border-color: var(--color-primary-cyan);
+            background-color: rgba(29, 112, 184, 0.04);
+        }
+
+        .qty-control {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #F8FAFC;
+        }
+
+        .qty-btn {
+            border: none;
+            background: transparent;
+            width: 32px;
+            height: 32px;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .qty-btn:hover {
+            background: #E2E8F0;
+        }
+
+        .qty-value {
+            width: 34px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Pestañas de Método de Pago */
+        .payment-method-tab {
+            border: 1.5px solid var(--color-border);
+            border-radius: 10px;
+            padding: 0.75rem 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: #FFFFFF;
+            color: var(--color-text-main);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .payment-method-tab.active {
+            border-color: var(--color-primary-dark);
+            background-color: var(--color-primary-dark);
+            color: #FFFFFF;
+        }
+
+        .summary-box {
+            background-color: #F1F5F9;
+            border-radius: 14px;
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+        }
+
+        /* ==========================================================================
+           9. PIE DE PÁGINA (FOOTER) Y RESPONSIVIDAD
+           ========================================================================== */
+        .footer-custom {
+            background-color: var(--color-primary-dark);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 4.5rem 0 2rem;
+        }
+
+        .footer-custom h5 {
+            color: #FFFFFF;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--color-accent-amber);
+        }
+
+        @media (max-width: 767.98px) {
+            .section-padding {
+                padding: 3.75rem 0;
+            }
+            .hero-section {
+                padding: 4.5rem 0 3.75rem;
+            }
+            .app-header-bar {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================================================
+         1. NAVEGACIÓN RESPONSIVA (NAVBAR)
+         ====================================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top" aria-label="Navegación principal">
+        <div class="container">
+            <a class="navbar-brand" href="#inicio">
+                <span class="brand-icon-box"><i class="fa-solid fa-faucet-drip"></i></span>
+                <span>Aqua Flow <span style="color: var(--color-primary-cyan);">Plomería</span></span>
+            </a>
+
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAquaFlow" aria-controls="navbarAquaFlow" aria-expanded="false" aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarAquaFlow">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-1">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tarifas">Planes y Tarifas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pago-app">Pago en Línea</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+                <div class="d-flex flex-column flex-sm-row gap-2 align-items-stretch align-items-lg-center">
+                    <a href="tel:+17875550199" class="btn btn-outline-primary fw-semibold rounded-3 px-3 py-2" style="border-color: var(--color-primary-cyan); color: var(--color-primary-dark);">
+                        <i class="fa-solid fa-phone-volume me-1 text-warning"></i> 24/7 Emergencias
+                    </a>
+                    <a href="#pago-app" class="btn btn-amber py-2 px-3">
+                        <i class="fa-solid fa-credit-card me-1"></i> Pagar en la App
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======================================================================
+         2. SECCIÓN HERO (LLAMADA A LA ACCIÓN Y PROPUESTA DE VALOR)
+         ====================================================================== -->
+    <header id="inicio" class="hero-section">
+        <div class="container position-relative">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill mb-3" style="background: rgba(243, 156, 18, 0.2); border: 1px solid rgba(243, 156, 18, 0.45);">
+                        <i class="fa-solid fa-bolt text-warning"></i>
+                        <span class="small fw-semibold text-white">Respuesta rápida en menos de 60 minutos • Residencial y Comercial</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Soluciones de Plomería Certificada con Cotización y Pago en Línea
+                    </h1>
+                    <p class="hero-subtitle">
+                        Especialistas en cambio de llaves, instalación de mezcladoras, destapes de drenajes y mantenimiento preventivo. Calcula tu tarifa transparente al instante y paga de forma segura desde nuestra plataforma.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="#pago-app" class="btn btn-amber btn-lg">
+                            <i class="fa-solid fa-calculator me-2"></i>Cotizar y Pagar Servicio
+                        </a>
+                        <a href="#servicios" class="btn btn-outline-light btn-lg rounded-3 fw-semibold px-4">
+                            <i class="fa-solid fa-wrench me-2"></i>Ver Servicios
+                        </a>
+                    </div>
+
+                    <div class="row g-3 pt-2">
+                        <div class="col-4">
+                            <div class="hero-stat-card text-center text-sm-start">
+                                <div class="h4 fw-bold text-white mb-0">+4,500</div>
+                                <small class="text-white-50">Servicios exitosos</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="hero-stat-card text-center text-sm-start">
+                                <div class="h4 fw-bold text-warning mb-0">4.9 <i class="fa-solid fa-star fs-6"></i></div>
+                                <small class="text-white-50">Calificación clientes</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="hero-stat-card text-center text-sm-start">
+                                <div class="h4 fw-bold text-white mb-0">100%</div>
+                                <small class="text-white-50">Garantía escrita</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel Rápido de Acceso Directo en el Hero con foto womanplumber.jpg -->
+                <div class="col-lg-5">
+                    <div class="hero-visual-panel">
+                        <img src="image/womanplumber.jpg" alt="Plomera profesional realizando reparación en tubería" class="hero-panel-banner">
+
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="badge rounded-pill px-3 py-2" style="background-color: rgba(29, 112, 184, 0.12); color: var(--color-primary-cyan);">
+                                <i class="fa-solid fa-shield-halved me-1"></i> Pago Protegido
+                            </span>
+                            <span class="small text-muted fw-semibold">Sin cargos ocultos</span>
+                        </div>
+                        <h3 class="h4 mb-2">¿Qué necesitas reparar hoy?</h3>
+                        <p class="text-muted small mb-3">Selecciona una acción rápida para cargar tu orden directamente en el cotizador:</p>
+
+                        <div class="d-grid gap-2 mb-3">
+                            <button type="button" class="btn btn-light border text-start p-3 rounded-3 d-flex justify-content-between align-items-center quick-select-btn" data-service="llave">
+                                <span><i class="fa-solid fa-faucet text-primary me-2"></i><strong>Cambio de Llave / Grifería</strong></span>
+                                <span class="badge bg-primary rounded-pill">$65</span>
+                            </button>
+                            <button type="button" class="btn btn-light border text-start p-3 rounded-3 d-flex justify-content-between align-items-center quick-select-btn" data-service="mezcladora">
+                                <span><i class="fa-solid fa-shower text-primary me-2"></i><strong>Instalación de Mezcladora</strong></span>
+                                <span class="badge bg-primary rounded-pill">$95</span>
+                            </button>
+                            <button type="button" class="btn btn-light border text-start p-3 rounded-3 d-flex justify-content-between align-items-center quick-select-btn" data-service="destape">
+                                <span><i class="fa-solid fa-water text-primary me-2"></i><strong>Destape de Tubería / Drenaje</strong></span>
+                                <span class="badge bg-primary rounded-pill">$85</span>
+                            </button>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2 text-muted small">
+                            <i class="fa-solid fa-circle-check text-success fs-5"></i>
+                            <span>Aceptamos Tarjetas de Crédito/Débito, ATH Móvil y PayPal.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         3. SECCIÓN DE SERVICIOS ESPECIALIZADOS (SOLUCIONES INTEGRALES DE PLOMERÍA)
+         ====================================================================== -->
+    <section id="servicios" class="section-padding">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 720px;">
+                <span class="section-badge"><i class="fa-solid fa-toolbox"></i> Nuestros Servicios</span>
+                <h2 class="display-6 mb-3">Soluciones Integrales de Plomería</h2>
+                <p class="text-muted">
+                    Contamos con maestros plomeros licenciados y equipos de diagnóstico moderno para resolver cualquier avería en hogares, oficinas, restaurantes y locales comerciales.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Servicio 1: Cambio de llaves y desagues (llavedepaso.jpg) -->
+                <div class="col-md-6 col-lg-3">
+                    <article class="service-card">
+                        <div>
+                            <div class="service-img-wrapper">
+                                <img src="image/llavedepaso.jpg" alt="Cambio de llaves de paso y grifería">
+                            </div>
+                            <h3 class="h5 mb-2">Cambio de Llaves y desagues</h3>
+                            <p class="text-muted small mb-3">
+                                Reemplazo e instalación de llaves de paso, desagues de cocina, lavamanos, válvulas angulares y llaves de jardín con sellado hermético antifugas.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4">
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Eliminación de goteos</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Válvulas de cierre rápido</li>
+                            </ul>
+                        </div>
+                        <div class="pt-3 border-top d-flex align-items-center justify-content-between">
+                            <div>
+                                <span class="d-block small text-muted">Desde</span>
+                                <span class="price-tag">$65.00</span>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary-deep quick-select-btn" data-service="llave">
+                                Agregar <i class="fa-solid fa-plus ms-1"></i>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Servicio 2: Mezcladoras de Ducha y Cocina (faucet.jpg) -->
+                <div class="col-md-6 col-lg-3">
+                    <article class="service-card">
+                        <div>
+                            <div class="service-img-wrapper">
+                                <img src="image/faucet.jpg" alt="Mezcladoras de ducha y cocina">
+                            </div>
+                            <h3 class="h5 mb-2">Mezcladoras de Ducha y Cocina</h3>
+                            <p class="text-muted small mb-3">
+                                Instalación en mezcladoras, duchas tipo lluvia y cocina tipo cuello ganso.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4">
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Balance óptimo de presión</li>
+                            </ul>
+                        </div>
+                        <div class="pt-3 border-top d-flex align-items-center justify-content-between">
+                            <div>
+                                <span class="d-block small text-muted">Desde</span>
+                                <span class="price-tag">$95.00</span>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary-deep quick-select-btn" data-service="mezcladora">
+                                Agregar <i class="fa-solid fa-plus ms-1"></i>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Servicio 3: Destapes de Tuberías y Drenajes (destapetuberia.png) -->
+                <div class="col-md-6 col-lg-3">
+                    <article class="service-card">
+                        <div>
+                            <div class="service-img-wrapper">
+                                <img src="image/destapetuberia.png" alt="Destapes de tuberías y drenajes">
+                            </div>
+                            <h3 class="h5 mb-2">Destapes de Tuberías y Drenajes</h3>
+                            <p class="text-muted small mb-3">
+                                Desobstrucción profesional de fregaderos, inodoros, lavamanos, líneas sanitarias principales y trampas de grasa con equipo eléctrico e hidrojet.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4">
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Sin romper pisos ni paredes</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Limpieza profunda de líneas</li>
+                            </ul>
+                        </div>
+                        <div class="pt-3 border-top d-flex align-items-center justify-content-between">
+                            <div>
+                                <span class="d-block small text-muted">Desde</span>
+                                <span class="price-tag">$85.00</span>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary-deep quick-select-btn" data-service="destape">
+                                Agregar <i class="fa-solid fa-plus ms-1"></i>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Servicio 4: Mantenimiento Residencial y Comercial (commercial.png) -->
+                <div class="col-md-6 col-lg-3">
+                    <article class="service-card">
+                        <div>
+                            <div class="service-img-wrapper">
+                                <img src="image/commercial.png" alt="Mantenimiento residencial y comercial">
+                            </div>
+                            <h3 class="h5 mb-2">Mantenimiento Residencial y Comercial</h3>
+                            <p class="text-muted small mb-3">
+                                Inspección integral de cisternas, calentadores, bombas de presión, sanitarios institucionales y detección ultrasónica de fugas ocultas.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4">
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Certificación para comercios</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Ahorro en factura de agua</li>
+                            </ul>
+                        </div>
+                        <div class="pt-3 border-top d-flex align-items-center justify-content-between">
+                            <div>
+                                <span class="d-block small text-muted">Desde</span>
+                                <span class="price-tag">$120.00</span>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary-deep quick-select-btn" data-service="mantenimiento">
+                                Agregar <i class="fa-solid fa-plus ms-1"></i>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         4. SECCIÓN DE PLANES Y TARIFAS (RESIDENCIAL VS COMERCIAL)
+         ====================================================================== -->
+    <section id="tarifas" class="section-padding bg-white border-top border-bottom">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 720px;">
+                <span class="section-badge"><i class="fa-solid fa-tags"></i> Tarifas Transparentes</span>
+                <h2 class="display-6 mb-3">Planes Residenciales y Comerciales</h2>
+                <p class="text-muted">
+                    Elige atención por visita puntual o protege tu hogar o empresa todo el año con nuestros planes preventivos con prioridad de despacho.
+                </p>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <!-- Plan 1: Residencial -->
+                <div class="col-lg-4">
+                    <div class="plan-card d-flex flex-column justify-content-between">
+                        <div>
+                            <span class="badge bg-light text-primary border mb-3">Hogar / Apartamento</span>
+                            <h3 class="h4">Visita Residencial Estándar</h3>
+                            <p class="text-muted small">Ideal para reparaciones puntuales de grifería, mezcladoras o destapes domésticos.</p>
+                            <div class="my-4">
+                                <span class="display-6 fw-bold text-dark">$65</span>
+                                <span class="text-muted"> / tarifa base</span>
+                            </div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-primary me-2"></i>Diagnóstico técnico en sitio</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-primary me-2"></i>Mano de obra certificada</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-primary me-2"></i>Garantía de 90 días en mano de obra</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-primary me-2"></i>Pago digital inmediato con recibo</li>
+                            </ul>
+                        </div>
+                        <a href="#pago-app" class="btn btn-outline-primary w-100 fw-bold py-2 rounded-3 set-property-trigger" data-type="residencial">
+                            Seleccionar Residencial
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Destacado -->
+                <div class="col-lg-4">
+                    <div class="plan-card featured d-flex flex-column justify-content-between">
+                        <span class="plan-ribbon">Más Solicitado</span>
+                        <div>
+                            <span class="badge bg-primary-subtle text-primary mb-3">Cobertura Integral</span>
+                            <h3 class="h4">Pack Mantenimiento Hogar</h3>
+                            <p class="text-muted small">Revisión completa de presión, válvulas, mezcladoras y limpieza preventiva de desagües.</p>
+                            <div class="my-4">
+                                <span class="display-6 fw-bold text-dark">$145</span>
+                                <span class="text-muted"> / servicio completo</span>
+                            </div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Inspección de hasta 4 puntos de agua</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Ajuste de mezcladoras y llaves de paso</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>1 destape preventivo incluido</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Garantía extendida de 6 meses</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-amber w-100 py-2 quick-select-btn" data-service="mantenimiento">
+                            Contratar Pack Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 3: Comercial -->
+                <div class="col-lg-4">
+                    <div class="plan-card d-flex flex-column justify-content-between">
+                        <div>
+                            <span class="badge bg-dark text-white mb-3">Empresas / Locales</span>
+                            <h3 class="h4">Servicio Comercial & Condominios</h3>
+                            <p class="text-muted small">Atención prioritaria para restaurantes, oficinas, clínicas y edificios comerciales.</p>
+                            <div class="my-4">
+                                <span class="display-6 fw-bold text-dark">$110</span>
+                                <span class="text-muted"> / tarifa base comercial</span>
+                            </div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-primary me-2"></i>Facturación fiscal y recibo corporativo</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-primary me-2"></i>Equipos de alto caudal e hidrojet</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-primary me-2"></i>Horarios flexibles fuera de jornada</li>
+                                <li class="mb-2"><i class="fa-solid fa-circle-check text-primary me-2"></i>Informe técnico de cumplimiento</li>
+                            </ul>
+                        </div>
+                        <a href="#pago-app" class="btn btn-primary-deep w-100 py-2 set-property-trigger" data-type="comercial">
+                            Seleccionar Comercial
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         5. APLICACIÓN INTERACTIVA DE PAGO EN LÍNEA Y COTIZADOR
+         ====================================================================== -->
+    <section id="pago-app" class="section-padding">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 720px;">
+                <span class="section-badge"><i class="fa-solid fa-mobile-screen-button"></i> App de Pago Directo</span>
+                <h2 class="display-6 mb-3">Cotiza y Paga tu Servicio en Línea</h2>
+                <p class="text-muted">
+                    Selecciona el tipo de propiedad, ajusta los servicios que necesitas y completa tu reserva con confirmación instantánea.
+                </p>
+            </div>
+
+            <div class="app-payment-wrapper">
+                <div class="app-header-bar d-flex flex-wrap justify-content-between align-items-center gap-3">
+                    <div>
+                        <h3 class="h4 text-white mb-1"><i class="fa-solid fa-shield-check me-2 text-warning"></i>Terminal de Cotización y Pago Aqua Flow</h3>
+                        <p class="small text-white-50 mb-0">Cálculo automático de impuestos (IVU 11.5%) • Recibo digital inmediato</p>
+                    </div>
+                    <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold">
+                        <i class="fa-solid fa-lock me-1"></i> Conexión Segura SSL
+                    </span>
+                </div>
+
+                <div class="p-4 p-lg-5">
+                    <form id="plumbingOrderForm" novalidate>
+                        <div class="row g-4 g-lg-5">
+                            <div class="col-lg-7">
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold text-uppercase small text-muted mb-2">1. Tipo de Propiedad</label>
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <button type="button" class="property-type-btn active" data-prop="residencial">
+                                                <div class="d-flex align-items-center gap-2 mb-1">
+                                                    <i class="fa-solid fa-house-chimney text-primary fs-5"></i>
+                                                    <strong class="d-block">Residencial</strong>
+                                                </div>
+                                                <small class="text-muted d-block">Casa, apartamento o condominio</small>
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="button" class="property-type-btn" data-prop="comercial">
+                                                <div class="d-flex align-items-center gap-2 mb-1">
+                                                    <i class="fa-solid fa-building text-primary fs-5"></i>
+                                                    <strong class="d-block">Comercial</strong>
+                                                </div>
+                                                <small class="text-muted d-block">Local, oficina o restaurante (+20%)</small>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <label class="form-label fw-bold text-uppercase small text-muted mb-0">2. Selecciona los Servicios y Cantidad</label>
+                                        <button type="button" id="resetServicesBtn" class="btn btn-link btn-sm text-decoration-none p-0">Limpiar selección</button>
+                                    </div>
+
+                                    <div class="d-grid gap-3" id="servicesListContainer">
+                                        <div class="service-option-item d-flex flex-wrap justify-content-between align-items-center gap-3" data-key="llave" data-base="65">
+                                            <div>
+                                                <strong class="d-block">Cambio de Llaves / Válvulas de Paso</strong>
+                                                <small class="text-muted">Incluye sellado profesional y prueba de presión ($65 c/u)</small>
+                                            </div>
+                                            <div class="qty-control">
+                                                <button type="button" class="qty-btn minus-btn" aria-label="Disminuir">−</button>
+                                                <span class="qty-value" id="qty-llave">1</span>
+                                                <button type="button" class="qty-btn plus-btn" aria-label="Aumentar">+</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="service-option-item d-flex flex-wrap justify-content-between align-items-center gap-3" data-key="mezcladora" data-base="95">
+                                            <div>
+                                                <strong class="d-block">Instalación / Reparación de Mezcladora</strong>
+                                                <small class="text-muted">Ducha, bañera o fregadero monomando/bimando ($95 c/u)</small>
+                                            </div>
+                                            <div class="qty-control">
+                                                <button type="button" class="qty-btn minus-btn" aria-label="Disminuir">−</button>
+                                                <span class="qty-value" id="qty-mezcladora">0</span>
+                                                <button type="button" class="qty-btn plus-btn" aria-label="Aumentar">+</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="service-option-item d-flex flex-wrap justify-content-between align-items-center gap-3" data-key="destape" data-base="85">
+                                            <div>
+                                                <strong class="d-block">Destape de Tubería o Drenaje</strong>
+                                                <small class="text-muted">Fregadero, lavamanos, ducha o línea sanitaria ($85 c/u)</small>
+                                            </div>
+                                            <div class="qty-control">
+                                                <button type="button" class="qty-btn minus-btn" aria-label="Disminuir">−</button>
+                                                <span class="qty-value" id="qty-destape">0</span>
+                                                <button type="button" class="qty-btn plus-btn" aria-label="Aumentar">+</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="service-option-item d-flex flex-wrap justify-content-between align-items-center gap-3" data-key="mantenimiento" data-base="120">
+                                            <div>
+                                                <strong class="d-block">Mantenimiento Preventivo Integral</strong>
+                                                <small class="text-muted">Revisión general de fugas, cisternas y calentador ($120 c/u)</small>
+                                            </div>
+                                            <div class="qty-control">
+                                                <button type="button" class="qty-btn minus-btn" aria-label="Disminuir">−</button>
+                                                <span class="qty-value" id="qty-mantenimiento">0</span>
+                                                <button type="button" class="qty-btn plus-btn" aria-label="Aumentar">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="form-label fw-bold text-uppercase small text-muted mb-2">3. Datos para el Despacho del Plomero</label>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="clientName" placeholder="Nombre completo o empresa *" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="tel" class="form-control" id="clientPhone" placeholder="Teléfono de contacto *" required>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="clientAddress" placeholder="Dirección exacta y municipio *" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-select" id="urgencySelect">
+                                                <option value="0">Visita Programada</option>
+                                                <option value="35">Urgencia 24/7 (+$35)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="summary-box h-100 d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h4 class="h5 mb-3">Resumen de Orden</h4>
+                                        <div id="orderBreakdown" class="small mb-3"></div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between mb-1 small">
+                                            <span class="text-muted">Subtotal servicios:</span>
+                                            <strong id="subtotalDisplay">$65.00</strong>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-1 small">
+                                            <span class="text-muted">IVU (11.5%):</span>
+                                            <strong id="taxDisplay">$7.48</strong>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+                                            <span class="h6 mb-0">Total a Pagar:</span>
+                                            <span class="h3 fw-bold text-primary mb-0" id="totalDisplay">$72.48</span>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <label class="form-label fw-bold small text-uppercase text-muted">Método de Pago</label>
+                                            <div class="row g-2 mb-3">
+                                                <div class="col-4">
+                                                    <div class="payment-method-tab active" data-method="card">
+                                                        <i class="fa-solid fa-credit-card d-block mb-1"></i> Tarjeta
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="payment-method-tab" data-method="ath">
+                                                        <i class="fa-solid fa-mobile-retro d-block mb-1"></i> ATH Móvil
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="payment-method-tab" data-method="paypal">
+                                                        <i class="fa-brands fa-paypal d-block mb-1"></i> PayPal
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="paymentFieldsContainer">
+                                                <div class="mb-2">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Número de tarjeta (•••• •••• •••• 4242)">
+                                                </div>
+                                                <div class="row g-2">
+                                                    <div class="col-6"><input type="text" class="form-control form-control-sm" placeholder="MM/AA"></div>
+                                                    <div class="col-6"><input type="text" class="form-control form-control-sm" placeholder="CVV"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-amber w-100 py-3 fs-6">
+                                            <i class="fa-solid fa-lock me-2"></i>Confirmar y Pagar Ahora
+                                        </button>
+                                        <p class="text-center text-muted small mt-2 mb-0">
+                                            <i class="fa-solid fa-shield-halved text-success me-1"></i> Garantía de satisfacción 100%
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+ <!-- ======================================================================
+         6. SECCIÓN DE CONTACTO Y COBERTURA
+         ====================================================================== -->
+    <section id="contacto" class="section-padding bg-white border-top">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5">
+                    <span class="section-badge"><i class="fa-solid fa-headset"></i> Atención Directa</span>
+                    <h2 class="display-6 mb-3">¿Tienes una Consulta Técnica o Proyecto Comercial?</h2>
+                    <p class="text-muted mb-4">
+                        Nuestro equipo de despacho coordina visitas técnicas, inspecciones con cámara y presupuestos para remodelaciones y locales comerciales.
+                    </p>
+
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                        <div class="brand-icon-box flex-shrink-0"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <h5 class="h6 mb-1">Línea Directa y Emergencias 24/7</h5>
+                            <p class="text-muted mb-0">(787) 555-0199 / (787) 555-0144</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                        <div class="brand-icon-box flex-shrink-0"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <h5 class="h6 mb-1">Correo de Despacho y Cotizaciones</h5>
+                            <p class="text-muted mb-0">servicios@aquaflowplomeria.com</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="brand-icon-box flex-shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <h5 class="h6 mb-1">Área de Cobertura</h5>
+                            <p class="text-muted mb-0">Área Metropolitana, Bayamón, Carolina, Guaynabo, Caguas y Dorado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="p-4 p-md-5 rounded-4 border bg-light shadow-sm">
+                        <h3 class="h4 mb-3">Envíanos un Mensaje Rápido</h3>
+                        <form id="contactMessageForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="contactName" class="form-label small fw-semibold">Nombre</label>
+                                    <input type="text" class="form-control" id="contactName" required placeholder="Tu nombre">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactEmail" class="form-label small fw-semibold">Correo o Teléfono</label>
+                                    <input type="text" class="form-control" id="contactEmail" required placeholder="tu@correo.com">
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactMessage" class="form-label small fw-semibold">Describe tu necesidad de plomería</label>
+                                    <textarea class="form-control" id="contactMessage" rows="3" required placeholder="Ej. Necesito instalar dos mezcladoras y revisar presión en local comercial..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary-deep px-4">
+                                        <i class="fa-solid fa-paper-plane me-2"></i>Enviar Consulta
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="contactFeedback" class="mt-3"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         7. PIE DE PÁGINA (FOOTER)
+         ====================================================================== -->
+    <footer id="contacto" class="footer-custom">
+        <div class="container">
+            <div class="row g-4 pb-4 border-bottom border-secondary">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="brand-icon-box"><i class="fa-solid fa-faucet-drip"></i></span>
+                        <span class="h4 text-white mb-0">Aqua Flow Plomería</span>
+                    </div>
+                    <p class="small text-white-50">
+                        Maestros plomeros licenciados y asegurados. Soluciones rápidas, limpias y garantizadas para residencias y comercios en todo Puerto Rico.
+                    </p>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <h5>Enlaces Rápidos</h5>
+                    <a href="#servicios" class="footer-link">Servicios de Plomería</a>
+                    <a href="#tarifas" class="footer-link">Planes Residenciales y Comerciales</a>
+                    <a href="#pago-app" class="footer-link">Cotizador y Pago en Línea</a>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <h5>Contacto Directo 24/7</h5>
+                    <p class="small mb-2"><i class="fa-solid fa-phone text-warning me-2"></i> (787) 555-0199</p>
+                    <p class="small mb-2"><i class="fa-solid fa-envelope text-warning me-2"></i> servicio@aquaflowpr.com</p>
+                    <p class="small mb-0"><i class="fa-solid fa-location-dot text-warning me-2"></i> Área Metropolitana e Isla, Puerto Rico</p>
+                </div>
+            </div>
+            <div class="pt-3 text-center small text-white-50">
+                &copy; 2026 Aqua Flow Plomería. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Confirmación de Pago -->
+    <div class="modal fade" id="paymentSuccessModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-body text-center p-5">
+                    <div class="mb-3 text-success" style="font-size: 3.5rem;">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="h4 mb-2">¡Pago Procesado con Éxito!</h3>
+                    <p class="text-muted small mb-4" id="modalConfirmationText">
+                        Tu orden ha sido asignada a un maestro plomero certificado.
+                    </p>
+                    <button type="button" class="btn btn-primary-deep px-4" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Lógica Interactiva del Cotizador y Terminal de Pago -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const state = {
+                propertyType: 'residencial',
+                quantities: {
+                    llave: 1,
+                    mezcladora: 0,
+                    destape: 0,
+                    mantenimiento: 0
+                },
+                prices: {
+                    llave: 65,
+                    mezcladora: 95,
+                    destape: 85,
+                    mantenimiento: 120
+                },
+                labels: {
+                    llave: 'Cambio de Llaves / Válvulas',
+                    mezcladora: 'Instalación / Reparación Mezcladora',
+                    destape: 'Destape de Tubería / Drenaje',
+                    mantenimiento: 'Mantenimiento Preventivo'
+                },
+                paymentMethod: 'card'
+            };
+
+            const breakdownEl = document.getElementById('orderBreakdown');
+            const subtotalEl = document.getElementById('subtotalDisplay');
+            const taxEl = document.getElementById('taxDisplay');
+            const totalEl = document.getElementById('totalDisplay');
+            const urgencySelect = document.getElementById('urgencySelect');
+
+            function updateCalculator() {
+                const multiplier = state.propertyType === 'comercial' ? 1.2 : 1.0;
+                let subtotal = 0;
+                let html = '';
+
+                Object.keys(state.quantities).forEach(key => {
+                    const qty = state.quantities[key];
+                    const itemEl = document.querySelector(`.service-option-item[data-key="${key}"]`);
+                    document.getElementById(`qty-${key}`).textContent = qty;
+
+                    if (qty > 0) {
+                        itemEl.classList.add('selected');
+                        const lineTotal = qty * state.prices[key] * multiplier;
+                        subtotal += lineTotal;
+                        html += `
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>${qty}x ${state.labels[key]}</span>
+                                <span>$${lineTotal.toFixed(2)}</span>
+                            </div>
+                        `;
+                    } else {
+                        itemEl.classList.remove('selected');
+                    }
+                });
+
+                const urgencyFee = parseFloat(urgencySelect.value) || 0;
+                if (urgencyFee > 0) {
+                    subtotal += urgencyFee;
+                    html += `
+                        <div class="d-flex justify-content-between mb-1 text-warning-emphasis">
+                            <span>Cargo por Urgencia 24/7</span>
+                            <span>$${urgencyFee.toFixed(2)}</span>
+                        </div>
+                    `;
+                }
+
+                if (subtotal === 0) {
+                    html = '<p class="text-muted fst-italic mb-0">Selecciona al menos un servicio para calcular tu cotización.</p>';
+                }
+
+                const tax = subtotal * 0.115;
+                const total = subtotal + tax;
+
+                breakdownEl.innerHTML = html;
+                subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+                taxEl.textContent = `$${tax.toFixed(2)}`;
+                totalEl.textContent = `$${total.toFixed(2)}`;
+            }
+
+            document.querySelectorAll('.service-option-item').forEach(item => {
+                const key = item.dataset.key;
+                item.querySelector('.plus-btn').addEventListener('click', () => {
+                    state.quantities[key]++;
+                    updateCalculator();
+                });
+                item.querySelector('.minus-btn').addEventListener('click', () => {
+                    if (state.quantities[key] > 0) {
+                        state.quantities[key]--;
+                        updateCalculator();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.quick-select-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const key = btn.dataset.service;
+                    if (state.quantities[key] === 0) {
+                        state.quantities[key] = 1;
+                    } else {
+                        state.quantities[key]++;
+                    }
+                    updateCalculator();
+                    document.getElementById('pago-app').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            document.querySelectorAll('.property-type-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.property-type-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state.propertyType = btn.dataset.prop;
+                    updateCalculator();
+                });
+            });
+
+            document.querySelectorAll('.set-property-trigger').forEach(link => {
+                link.addEventListener('click', () => {
+                    const type = link.dataset.type;
+                    document.querySelectorAll('.property-type-btn').forEach(b => {
+                        b.classList.toggle('active', b.dataset.prop === type);
+                    });
+                    state.propertyType = type;
+                    updateCalculator();
+                });
+            });
+
+            urgencySelect.addEventListener('change', updateCalculator);
+
+            document.getElementById('resetServicesBtn').addEventListener('click', () => {
+                Object.keys(state.quantities).forEach(k => state.quantities[k] = 0);
+                urgencySelect.value = "0";
+                updateCalculator();
+            });
+
+            const paymentFields = document.getElementById('paymentFieldsContainer');
+            document.querySelectorAll('.payment-method-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.payment-method-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    state.paymentMethod = tab.dataset.method;
+
+                    if (state.paymentMethod === 'card') {
+                        paymentFields.innerHTML = `
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm" placeholder="Número de tarjeta (•••• •••• •••• 4242)">
+                            </div>
+                            <div class="row g-2">
+                                <div class="col-6"><input type="text" class="form-control form-control-sm" placeholder="MM/AA"></div>
+                                <div class="col-6"><input type="text" class="form-control form-control-sm" placeholder="CVV"></div>
+                            </div>
+                        `;
+                    } else if (state.paymentMethod === 'ath') {
+                        paymentFields.innerHTML = `
+                            <div class="p-2 bg-white border rounded small">
+                                <strong>Path ATH Móvil:</strong> <code>/AquaFlowPR</code><br>
+                                <span class="text-muted">Ingresa tu número de teléfono vinculado:</span>
+                                <input type="tel" class="form-control form-control-sm mt-1" placeholder="(787) 000-0000">
+                            </div>
+                        `;
+                    } else {
+                        paymentFields.innerHTML = `
+                            <div class="p-2 bg-white border rounded small text-muted">
+                                Serás redirigido de forma segura a tu cuenta de <strong>PayPal</strong> al confirmar la orden.
+                            </div>
+                        `;
+                    }
+                });
+            });
+
+            document.getElementById('plumbingOrderForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('clientName').value.trim();
+                const phone = document.getElementById('clientPhone').value.trim();
+                const address = document.getElementById('clientAddress').value.trim();
+
+                if (!name || !phone || !address) {
+                    alert('Por favor completa tu nombre, teléfono y dirección para coordinar la visita.');
+                    return;
+                }
+
+                const total = totalEl.textContent;
+                document.getElementById('modalConfirmationText').innerHTML = `
+                    Gracias <strong>${name}</strong>. Hemos recibido tu pago por <strong>${total}</strong>.<br>
+                    Un técnico certificado va en camino a <strong>${address}</strong> y te contactará al <strong>${phone}</strong>.
+                `;
+                const modal = new bootstrap.Modal(document.getElementById('paymentSuccessModal'));
+                modal.show();
+            });
+
+            updateCalculator();
+        });
+    </script>
+</body>
+</html>
